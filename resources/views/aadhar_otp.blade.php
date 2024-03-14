@@ -2,7 +2,7 @@
 @section('mainContent')
     <div
         class="mx-auto w-11/12 sm:w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-        <form class="space-y-6" method="post" action="{{ route('otp_validate') }}">
+        <form class="space-y-6" method="post" action="{{ route('aadhar_otp_submit') }}">
             @csrf
 
             @if ($errors->any())
@@ -27,12 +27,12 @@
             @endif
 
             <div class="bg-white py-3 rounded text-center">
-                <h1 class="text-2xl font-bold">OTP Verification</h1>
+                <h1 class="text-2xl font-bold">Aadhar OTP Verification</h1>
                 <div class="flex flex-col mt-4">
-                    <span>Enter the OTP you received at</span>
-                    <span class="font-bold">+91 {{ $phone_number }}</span>
+                    <span>Enter the OTP you received at Your Aadhar Registered Mobile Number</span>
+                 
                 </div>
-                <input type="hidden" name="phone_number" value="{{ $phone_number }}">
+                <input type="hidden" name="ref" value="{{ $ref }}">
                 <div id="otp" class="flex flex-row justify-center text-center px-2 mt-5">
                     <input class="m-2 border h-10 w-10 md:h-12 md:w-12 text-center form-control rounded text-base"
                         name="otp[]" type="text" id="first" maxlength="1" />
@@ -48,10 +48,7 @@
                         name="otp[]" type="text" id="sixth" maxlength="1" />
                 </div>
 
-                <div class="flex justify-center text-center mt-5">
-                    <a class="flex items-center text-blue-700 hover:text-blue-900 cursor-pointer"><span
-                            class="font-bold">Resend OTP</span><i class='bx bx-caret-right ml-1'></i></a>
-                </div>
+               
                 <button type="submit"
                     class="mt-3 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Continue</button>
             </div>

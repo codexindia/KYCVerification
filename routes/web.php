@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BankManager;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KYCManager;
 /*
@@ -24,6 +25,16 @@ Route::controller(KYCManager::class)->prefix('OTP')->group(function () {
     Route::post('/Validate/submit', 'otp_validate')->name('otp_validate');
 });
 Route::controller(KYCManager::class)->prefix('step-2')->group(function () {
-    Route::get('/user_detailes', 'user_detailes')->name('user_detailes');
-  //  Route::post('/Validate/submit', 'otp_validate')->name('otp_validate');
+    Route::get('/aadhar_details', 'aadhar_details')->name('aadhar_details');
+    Route::post('/aadhar_details/SendOTP', 'aadhar_otp')->name('aadhar_otp');
+    Route::get('/Aadhar/Validate_otp/{ref}', 'aadhar_validate_otp')->name('aadhar_validate_otp');
+    Route::post('/Aadhar/Validate_otp', 'aadhar_otp_submit')->name('aadhar_otp_submit');
+});
+Route::controller(BankManager::class)->prefix('step-3')->group(function () {
+    Route::get('/bank_data', 'bank_data')->name('bank_data_page');
+    Route::post('/bank_data', 'bank_data_submit')->name('bank_data_submit');
+});
+Route::controller(BankManager::class)->prefix('step-4')->group(function () {
+    Route::get('/final', 'final_page')->name('final_page');
+  
 });

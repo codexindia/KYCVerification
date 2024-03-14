@@ -1,5 +1,9 @@
 @extends('layouts.main')
 @section('mainContent')
+
+
+
+
     <div
         class="mx-auto w-11/12 sm:w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
         <form class="space-y-6" method="post" action="{{ route('basic_submit') }}">

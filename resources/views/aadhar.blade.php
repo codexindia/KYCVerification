@@ -2,7 +2,7 @@
 @section('mainContent')
     <div
         class="mx-auto w-11/12 sm:w-full max-w-lg p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-        <form class="space-y-6" method="post" action="{{ route('otp_validate') }}">
+        <form class="space-y-6" method="post" action="{{ route('aadhar_otp') }}">
             @csrf
 
             @if ($errors->any())
@@ -29,8 +29,8 @@
 
 
             <div class="bg-white py-3 rounded text-center">
-                <h1 class="text-2xl font-bold">Adhaar Verification</h1>
-                
+                <h1 class="text-2xl font-bold">Aadhar Verification</h1>
+
 
                 <div id="otp" class="flex flex-row justify-center text-center px-2 mt-5">
                     <input class="m-2 border h-10 w-20 md:h-12 md:w-28 text-center form-control rounded text-base"
@@ -42,7 +42,7 @@
 
                 </div>
 
-               
+
                 <button type="submit"
                     class="mt-3 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Continue</button>
             </div>
@@ -59,22 +59,20 @@
 
             function OTPInput() {
                 const inputs = document.querySelectorAll('#otp > *[id]');
+
                 for (let i = 0; i < inputs.length; i++) {
                     inputs[i].addEventListener('keydown', function(event) {
+
                         if (event.key === "Backspace") {
-                            inputs[i].value = '';
-                            if (i !== 0) inputs[i - 1].focus();
+                            if (i !== 0 && inputs[i].value.length == 0)
+                                inputs[i - 1].focus();
                         } else {
                             if (i === inputs.length - 1 && inputs[i].value !== '') {
                                 return true;
-                            } else if (event.keyCode > 47 && event.keyCode < 58) {
-                                inputs[i].value = event.key;
-                               
-                                if (i !== inputs.length - 1 ) inputs[i + 1].focus();
-                                event.preventDefault();
-                            } else if (event.keyCode > 64 && event.keyCode < 91) {
-                                inputs[i].value = String.fromCharCode(event.keyCode);
-                                if (i !== inputs.length - 1) inputs[i + 1].focus();
+                            } else if (inputs[i].value.length >= 4) {
+                                if (i !== inputs.length - 1)
+                                    inputs[i + 1].focus();
+                                inputs[i + 1].value = event.key;
                                 event.preventDefault();
                             }
                         }
