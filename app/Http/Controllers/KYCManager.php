@@ -149,7 +149,7 @@ class KYCManager extends Controller
             ]);
             User::find($request->user()->id)->update([
                 'name' => $response->data->name,
-                'email' => $response->data->email != "" ? $response->data->email : null
+              
             ]);
             return redirect(route('bank_data_page'));
         } catch (Exception $e) {
