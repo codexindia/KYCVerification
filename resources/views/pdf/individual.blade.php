@@ -126,10 +126,10 @@
         <p class="box3">5. State : {{ $aadhar->data->split_address->state }}</p>
         <p class="box3">6. Pin Code : {{ $aadhar->data->split_address->pincode }}</p>
     </div>
-    <div class="clearfix">
+    <div class="clearfix" style="margin-top: 10px">
         <p class="box3">7. Date of Birth: {{  $aadhar->data->dob }}</p>
         <p class="box3">8. Gender : {{ $aadhar->data->gender=="M"?"Male":$aadhar->data->gender }}</p>
-        <p class="box3">9. Father:  {{ $aadhar->data->care_of }}</p>
+        <p class="box3">9. Father’s/ Spouse Name:  {{ $aadhar->data->care_of }}</p>
     </div>
 
     <div class="header">
