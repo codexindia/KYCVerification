@@ -15,6 +15,10 @@ class PDFManager extends Controller
         $user = User::where('customer_id', $request->user()->customer_id)
         ->with('getAadharData')
         ->with('getBankData')->first();
+        if($user->get_aadhar_data == null && $user->get_bank_data == null)
+        {
+            return "Complete All Steps Properly";
+        }
         $user = json_decode($user, true);
         $pdf = Pdf::setOption(['dpi' => 150]);
        // return view('pdf.individual',compact('user'));
