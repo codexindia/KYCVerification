@@ -78,6 +78,9 @@ class KYCManager extends Controller
     }
     public function aadhar_details(Request $request)
     {
+        if ($request->user()->getAadharData != null) {
+            return redirect(route('final_page'));
+        }
         return view('aadhar');
     }
     public function aadhar_otp(Request $request)

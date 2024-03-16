@@ -100,6 +100,8 @@
 
 @php
     $aadhar = json_decode($user['get_aadhar_data']['core']);
+    $company = json_decode($user['get_company_data']['gst_api_data']);
+    $cmp_addr =  $company->data->pradr->addr;
     $bank = $user['get_bank_data'];
 @endphp
 
@@ -107,13 +109,21 @@
     <center><u>KNOW YOUR CUSTOMER (KYC) ACKNOWLEDGEMENT </u>
     </center>
     <h5>
-        I {{ $user['name'] }}, A citizen of India, residing in {{ $aadhar->data->split_address->dist }}, {{ $aadhar->data->split_address->state }}, hereby provide the following details for
-        Know Your Customer (KYC) purposes:
+        I {{ $user['name'] }}, A citizen of India, residing in {{ $aadhar->data->split_address->dist }}, {{ $aadhar->data->split_address->state }}, representing {{ $user['get_company_data']['company_name'] }}, in my capacity as [Your Company Role], provide the following details for Know Your Customer (KYC) purposes:
     </h5>
-
     <div class="header">
         <strong>
-            A. IDENTITY DETAILS:
+            A. COMPANY INFORMATION:
+        </strong>
+    </div>
+    <p>1. Company Name: {{ $user['get_company_data']['company_name'] }}</p>
+    
+    <p style="line-height:25px;">2. Registered Address: {{  str_replace('-,',"",$cmp_addr->bno.', '.$cmp_addr->st.', '.$cmp_addr->dst.', '.$cmp_addr->stcd.', '.$cmp_addr->pncd) }}</p>
+    <p>3. Goods and Services Tax Identification Number (GSTIN):{{$user['get_company_data']['gst_number']}}
+    </p>
+    <div class="header">
+        <strong>
+            B. IDENTITY DETAILS:(FOR AUTHORIZED REPRESENTATIVE):
         </strong>
     </div>
     <p>1. Full Name : {{ $user['name'] }}</p>
@@ -134,7 +144,7 @@
     <p class="smpltxt" style="margin-top:-5px;">10. Specify the proof of Identity submitted:  Aadhar Card</p>
     <div class="header">
         <strong>
-            B. CONTACT INFORMATION:
+            C. CONTACT INFORMATION:(FOR AUTHORIZED REPRESENTATIVE):
         </strong>
     </div>
     <div class="clearfix">
@@ -144,7 +154,7 @@
     </div>
     <div class="header">
         <strong>
-            C. BANK DETAILES:
+            D. BANK DETAILES:(FOR COMPANY):
         </strong>
     </div>
     <div class="clearfix">
@@ -159,10 +169,10 @@
 
     <div class="header">
         <strong>
-            D. AGREEMENT TO NEXGINO's POLICIES:
+            E. AGREEMENT TO NEXGINO's POLICIES:
         </strong>
     </div>
-    <p> I hereby acknowledge and agree to Nexgino's:</p>
+    <p>  I hereby acknowledge and legally agree on behalf of {{ $user['get_company_data']['company_name'] }} to Nexgino's:</p>
     <div class="clearfix">
         <p class="box4">1. <a href="https://nexgino.com/privacy-policy">Privacy Policy</a></p>
         <p class="box4">2. <a href="https://nexgino.com/refund-and-cancellation">Refund Policy</a></p>
@@ -172,16 +182,15 @@
 
     <div class="header">
         <strong>
-            E. RESPONSIBILITY FOR PROJECT:
+            F. RESPONSIBILITY FOR PROJECT:
         </strong>
     </div>
     <p class="smpltxt">
-        I understand and accept full responsibility for my project. Nexgino is not liable for any issues, losses, or
-        damages currently or in the future.
+        I legally undertake, on behalf of {{ $user['get_company_data']['company_name'] }}, full responsibility for the project. Nexgino is not liable for any issues, losses, or damages currently or in the future.
     </p>
     <div class="header">
         <strong>
-            F. REFUND PROCESS:
+            G. REFUND PROCESS:
         </strong>
     </div>
     <p class="smpltxt">
@@ -191,7 +200,7 @@
 
     <div class="header">
         <strong>
-            G. LEGAL COMPLIANCE:
+            H. LEGAL COMPLIANCE:
         </strong>
     </div>
     <p class="smpltxt">

@@ -89,7 +89,7 @@
                         required {{ old('terms') == 1 ? 'checked' : '' }} />
                 </div>
                 <label for="terms" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I Agree With The <a
-                        href="https://nexgino.com" class="text-blue-600 hover:underline dark:text-blue-500">Terms and
+                        href="https://nexgino.com/kyc-terms-condition" class="text-blue-600 hover:underline dark:text-blue-500">Terms and
                         Conditions</a></label>
             </div>
             <button type="submit"
