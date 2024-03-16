@@ -32,14 +32,11 @@
                 <h1 class="text-2xl font-bold">Aadhar Verification</h1>
 
 
-                <div id="otp" class="flex flex-row justify-center text-center px-2 mt-5">
-                    <input class="m-2 border h-10 w-20 md:h-12 md:w-28 text-center form-control rounded text-base"
-                        name="otp[]" type="text" id="first" maxlength="4" />
-                    <input class="m-2 border h-10 w-20 md:h-12 md:w-28 text-center form-control rounded text-base"
-                        name="otp[]" type="text" id="second" maxlength="4" />
-                    <input class="m-2 border h-10 w-20 md:h-12 md:w-28 text-center form-control rounded text-base"
-                        name="otp[]" type="text" id="third" maxlength="4" />
-
+                <div>
+                    <label for="aadhar_number" class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Aadhar Card Number</label>
+                    <input type="aadhar_number" name="aadhar_number" id="aadhar_number"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        placeholder="1234567890" value="{{ old('aadhar_number') }}" required />
                 </div>
 
 

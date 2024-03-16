@@ -82,10 +82,10 @@ class KYCManager extends Controller
     }
     public function aadhar_otp(Request $request)
     {
-        $aadhar = implode($request->otp);
-        if (strlen($aadhar) != 12) {
-            return back()->withErrors(['Aadhar Must Be 12 Digits']);
-        }
+        $request->validate([
+          'aadhar_number' => 'required|min:12|max:12'
+        ]);
+        $aadhar =$request->aadhar_number;
         try {
             $response = Http::withHeaders([
                 'x-api-key' => env('SANDBOX_API_KEY'),
