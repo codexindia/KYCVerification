@@ -131,7 +131,7 @@
         <p class="box3">8. Gender : {{ $aadhar->data->gender=="M"?"Male":$aadhar->data->gender }}</p>
         <p class="box3">9. Father’s/ Spouse Name:  {{ $aadhar->data->care_of }}</p>
     </div>
-
+    <p>10. Specify the proof of Identity submitted:  Aadhar Card</p>
     <div class="header">
         <strong>
             B. CONTACT INFORMATION:
