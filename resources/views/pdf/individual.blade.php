@@ -118,15 +118,19 @@
     </div>
     <p>1. Full Name : {{ $user['name'] }}</p>
     <p>2. Aadhar Number : {{ $user['get_aadhar_data']['aadhar_number'] }}</p>
-    <p>3. Date of Birth: {{  $aadhar->data->dob }} </p>
-    <p>4. Address : {{  str_replace('-,',"",$aadhar->data->address) }}</p>
+   
+    <p>3. Address : {{  str_replace('-,',"",$aadhar->data->address) }}</p>
 
     <div class="clearfix">
-        <p class="box3">5. City : {{ $aadhar->data->split_address->dist }}</p>
-        <p class="box3">6. State : {{ $aadhar->data->split_address->state }}</p>
-        <p class="box3">7. Pin Code : {{ $aadhar->data->split_address->pincode }}</p>
+        <p class="box3">4. City : {{ $aadhar->data->split_address->dist }}</p>
+        <p class="box3">5. State : {{ $aadhar->data->split_address->state }}</p>
+        <p class="box3">6. Pin Code : {{ $aadhar->data->split_address->pincode }}</p>
     </div>
-
+    <div class="clearfix">
+        <p class="box3">7. Date of Birth: {{  $aadhar->data->dob }}</p>
+        <p class="box3">8. Gender : {{ $aadhar->data->gender=="M"?"Male":$aadhar->data->gender }}</p>
+        <p class="box3">9. Father’s/ Spouse Name: : {{ $aadhar->data->care_of }}</p>
+    </div>
 
     <div class="header">
         <strong>
