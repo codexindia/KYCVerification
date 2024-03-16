@@ -99,7 +99,7 @@ class KYCManager extends Controller
                 'aadhaar_number' => $aadhar
             ]);
             $response = json_decode($response);
-            return check_sanbox_token();
+
             if ($response->data->message == "Invalid Aadhaar Card") {
                 return back()->withErrors($response->data->message);
             }
