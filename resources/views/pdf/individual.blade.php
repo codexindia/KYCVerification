@@ -104,7 +104,7 @@
 @endphp
 
 <body>
-    <center><u>KNOW YOUR CUSTOMER (KYC) ACKNOWLEDGEMENT FORM </u>
+    <center><u>KNOW YOUR CUSTOMER (KYC) ACKNOWLEDGEMENT </u>
     </center>
     <h5>
         I {{ $user['name'] }}, A citizen of India, residing in {{ $aadhar->data->split_address->dist }}, {{ $aadhar->data->split_address->state }}, hereby provide the following details for
