@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Console\Commands;
+use Brotzka\DotenvEditor\DotenvEditor;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
@@ -27,16 +28,21 @@ class SandBoxAPI extends Command
     public function handle()
     {
         $respone = Http::withHeaders(
-            [
-                'accept' => 'application/json',
-                'x-api-key' => env('SANDBOX_API_KEY'),
-                'x-api-secret' =>  env('SANDBOX_API_SECRET'),
-                'x-api-version' => '1',
-            ]
+           [
+               'accept' => 'application/json',
+               'x-api-key' => env('SANDBOX_API_KEY'),
+               'x-api-secret' =>  env('SANDBOX_API_SECRET'),
+               'x-api-version' => '1',
+           ]
         )->post('https://api.sandbox.co.in/authenticate');
         $respone = json_decode($respone);
-        $this->setEnv('SANDBOX_ACCESS_TOKEN', $respone->access_token);
-        echo "done";
+        $env = new DotenvEditor();
+
+        $env->changeEnv([
+            'SANDBOX_ACCESS_TOKEN' => $respone->access_token,
+        ]);
+      
+        echo "Done";
     }
     private function setEnv($key, $value)
     {
