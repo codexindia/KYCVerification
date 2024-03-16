@@ -32,7 +32,8 @@
                     <span>Enter the OTP you received at Your Aadhar Registered Mobile Number</span>
                  
                 </div>
-                <input type="hidden" name="ref" value="{{ $ref }}">
+                <input type="hidden" name="ref" value="{{ $pagerec['ref_id'] }}">
+                <input type="hidden" name="aadhar_number" value="{{ $pagerec['aadhaar_number'] }}">
                 <div id="otp" class="flex flex-row justify-center text-center px-2 mt-5">
                     <input class="m-2 border h-10 w-10 md:h-12 md:w-12 text-center form-control rounded text-base"
                         name="otp[]" type="text" id="first" maxlength="1" />

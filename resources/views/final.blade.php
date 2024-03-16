@@ -2,7 +2,7 @@
 @section('mainContent')
     <div
         class="mx-auto w-11/12 sm:w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-        <form class="space-y-6" method="post" action="{{ route('bank_data_submit') }}">
+       
             @csrf
           
            
@@ -27,9 +27,9 @@
             @endif
 
             <h5 class="text-md font-medium text-gray-900 dark:text-white">Dear <span class="text-green-500 font-bold">{{ auth()->user()->name }}</span> Your KYC Has SuccessFully Verified At Nexgino Technology Solution</h5>
-         <p class="text-md text-center mt-4">Customer ID is <span class="font-bold">NAA234234</span></p>
-            <button type="submit"
-                    class="mt-3 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Download Acknowledgement</button>
-        </form>
+         <p class="text-md text-center mt-4">Customer ID is <span class="font-bold">{{ auth()->user()->customer_id }}</span></p>
+           <a href="{{ route('download_ackw') }}"> <button type="submit"
+                    class="mt-3 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Download Acknowledgement</button></a>
+        
     </div>
 @endsection

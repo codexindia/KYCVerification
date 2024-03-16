@@ -75,7 +75,12 @@
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="1234567890" value="{{ old('phone_number') }}" required />
             </div>
-
+            <div>
+                <label for="email" class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Email Address</label>
+                <input type="email" name="email" id="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    placeholder="abc@example.com" value="{{ old('email') }}" required />
+            </div>
             <div class="flex items-start mb-5">
                 <div class="flex items-center h-5">
                     <input id="terms" name="terms" type="checkbox" value="1"

@@ -25,6 +25,7 @@ class KYCManager extends Controller
             'registration_type' => 'required'
         ]);
         $temp = [
+            'email' => $request->email,
             'registration_type' => $request->registration_type,
         ];
         $this->genarateotp($request->phone_number, $temp);
@@ -50,15 +51,25 @@ class KYCManager extends Controller
             $checkphone = User::where('mobile_number', $request->phone_number)->first();
             if ($checkphone) {
                 Auth::loginUsingId($checkphone->id);
+
+                if ($checkphone->user_type == 'company') {
+                    return redirect(route('company_details'));
+                }
                 if ($checkphone->getAadharData == null)
                     return redirect(route('aadhar_details'));
                 return redirect(route('bank_data_page'));
             } else {
                 $newuser = User::create([
                     'mobile_number' => $request->phone_number,
-                    'user_type' => $temp->registration_type
+                    'user_type' => $temp->registration_type,
+                    'email' => $temp->email,
+                    'customer_id' => 'NTS' . time() . 'VC'
                 ]);
+
                 Auth::loginUsingId($newuser->id);
+                if ($newuser->user_type == 'company') {
+                    return redirect(route('company_details'));
+                }
                 return redirect(route('aadhar_details'));
             }
         } else {
@@ -92,16 +103,24 @@ class KYCManager extends Controller
             return back()->withErrors("Something went Wrong");
         }
         if ($response->code == 200) {
-            return redirect(route('aadhar_validate_otp', encrypt($response->data->ref_id)));
+            $pagerec = [
+                'ref_id' => $response->data->ref_id,
+                'aadhaar_number' => $aadhar,
+            ];
+            return redirect(route('aadhar_validate_otp', encrypt($pagerec)));
         }
     }
     public function aadhar_validate_otp(Request $request)
     {
-        $ref = decrypt($request->ref);
-        return view('aadhar_otp', compact('ref'));
+        $pagerec = decrypt($request->pagerec);
+
+        return view('aadhar_otp', compact('pagerec'));
     }
     public function aadhar_otp_submit(Request $request)
     {
+        $request->validate([
+            'aadhar_number' => 'required'
+        ]);
         $otp = implode($request->otp);
         if (strlen($otp) != 6) {
             return back()->withErrors(['OTP Must Be 6 Digits']);
@@ -122,6 +141,7 @@ class KYCManager extends Controller
             }
             AadharData::create([
                 'user_id' => $request->user()->id,
+                'aadhar_number' => $request->aadhar_number,
                 'ref_id' => $request->ref,
                 'transaction_id' => $response->transaction_id,
                 'timestamp' => $response->timestamp,
@@ -205,5 +225,4 @@ class KYCManager extends Controller
             return $checkotp;
         }
     }
-    
 }

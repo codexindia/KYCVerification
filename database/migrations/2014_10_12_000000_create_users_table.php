@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('email')->nullable()->unique();
-            $table->string('company_name')->nullable();
+          
             $table->string('customer_id')->nullable();
             $table->string('mobile_number');
             $table->enum('user_type',['individual','company']);

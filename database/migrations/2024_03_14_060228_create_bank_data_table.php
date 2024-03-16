@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('bank_data', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
+            $table->string('user_id')->unique();
+            $table->string('account_holder_name');
             $table->string('ifsc_code');
             $table->string('account_number')->unique();
             $table->string('status')->default('verified');

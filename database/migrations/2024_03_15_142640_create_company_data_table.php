@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('aadhar_data', function (Blueprint $table) {
+        Schema::create('company_data', function (Blueprint $table) {
             $table->id();
             $table->string('user_id')->unique();
-            $table->string('ref_id')->unique();
-            $table->string('aadhar_number')->unique();
-            $table->string('transaction_id');
-            $table->string('timestamp');
-            $table->json('core');
-        
+            $table->string('company_name');
+            $table->string('gst_number');
+            $table->json('gst_api_data');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('aadhar_data');
+        Schema::dropIfExists('company_data');
     }
 };
