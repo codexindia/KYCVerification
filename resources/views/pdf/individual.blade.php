@@ -107,7 +107,7 @@
     <center><u>KNOW YOUR CUSTOMER (KYC) ACKNOWLEDGEMENT FORM </u>
     </center>
     <h5>
-        I Name, A citizen of India, residing in [City, State], hereby provide the following details for
+        I {{ $user['name'] }}, A citizen of India, residing in {{ $aadhar->data->split_address->dist }}, {{ $aadhar->data->split_address->state }}, hereby provide the following details for
         Know Your Customer (KYC) purposes:
     </h5>
 
